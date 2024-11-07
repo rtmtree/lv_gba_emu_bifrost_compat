@@ -23,6 +23,7 @@
 #include "gba_internal.h"
 #include "libretro.h"
 #include <math.h>
+#include <string.h>
 
 #define GBA_FB_STRIDE 256
 #ifndef GBA_FRAME_SKIP

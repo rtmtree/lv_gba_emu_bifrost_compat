@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 #define GBA_EMU_PREFIX "gba_emu: "
 
@@ -61,17 +62,24 @@ static void show_usage(const char* progname, int exitcode)
     exit(exitcode);
 }
 
+
+
 static void parse_commandline(int argc, char* const* argv, gba_emu_param_t* param)
 {
     int ch;
 
-    if (argc < 2) {
-        show_usage(argv[0], EXIT_FAILURE);
-    }
+    // if (argc < 2) {
+    //     show_usage(argv[0], EXIT_FAILURE);
+    // }
+
 
     memset(param, 0, sizeof(gba_emu_param_t));
     param->mode = LV_VER_RES < 400 ? LV_GBA_VIEW_MODE_SIMPLE : LV_GBA_VIEW_MODE_VIRTUAL_KEYPAD;
     param->volume = 100;
+    if (argc == 1) {
+        param->file_path = "rom/silent.gba";
+    }
+
 
     while ((ch = getopt(argc, argv, "f:m:v:h")) != -1) {
         switch (ch) {

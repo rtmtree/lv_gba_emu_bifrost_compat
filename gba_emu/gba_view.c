@@ -81,6 +81,10 @@ static const btn_map_t btn_ctrl_map[] = {
     { "SELECT", LV_ALIGN_RIGHT_MID },
 };
 
+static const btn_map_t btn_spe_map[] = {
+    { "C", LV_ALIGN_TOP_MID },
+};
+
 static bool screen_create(gba_context_t* ctx)
 {
     gba_view_t* view = ctx->view;
@@ -198,6 +202,26 @@ static void btn_create(gba_context_t* ctx)
 
             lv_obj_t* label = lv_label_create(btn);
             lv_label_set_text(label, btn_ctrl_map[i].txt);
+            lv_obj_center(label);
+        }
+    }
+    {
+        lv_obj_t* cont = lv_obj_create(view->root);
+
+        view->btn.ctrl.cont = cont;
+
+        lv_obj_set_size(cont, cont_size * 2, LV_SIZE_CONTENT);
+        lv_obj_add_flag(cont, LV_OBJ_FLAG_FLEX_IN_NEW_TRACK);
+        lv_obj_set_style_pad_all(cont, 0, 0);
+
+        // lv_obj_t** btn_arr = &view->btn.ctrl.start;
+        for (int i = 0; i < GBA_ARRAY_SIZE(btn_spe_map); i++) {
+            lv_obj_t* btn = lv_btn_create(cont);
+            // btn_arr[i] = btn;
+            lv_obj_align(btn, btn_spe_map[i].align, 0, 0);
+
+            lv_obj_t* label = lv_label_create(btn);
+            lv_label_set_text(label, btn_spe_map[i].txt);
             lv_obj_center(label);
         }
     }

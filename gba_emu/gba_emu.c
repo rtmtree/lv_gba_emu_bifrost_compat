@@ -33,8 +33,8 @@ static void gba_context_init(gba_context_t* ctx)
 
 static void gba_emu_timer_cb(lv_timer_t* timer)
 {
-    gba_context_t* gba_ctx = timer->user_data;
-    gba_retro_run(gba_ctx);
+    // gba_context_t* gba_ctx = timer->user_data;
+    // gba_retro_run(gba_ctx);
 }
 
 static bool gba_emu_change_rom_size(const char* path)
